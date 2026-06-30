@@ -1,0 +1,12 @@
+.cart-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 40px;
+  border-radius: 8px;
+  background-color: var(--mantine-color-greenColor-6);
+
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--mantine-color-grayColor-0);
+}

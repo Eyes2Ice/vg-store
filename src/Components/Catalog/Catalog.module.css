@@ -1,0 +1,11 @@
+.catalog__title {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.25;
+}
+
+.catalog__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px 24px;
+}
