@@ -11,16 +11,18 @@ import {
   NumberFormatter,
   Button,
   Box,
+  Loader,
 } from "@mantine/core";
 import QuantityInput from "../QuantityInput/QuantityInput";
 import greenCartIcon from "@/assets/img/icons/cart-green.svg";
+import LoadingImage from "./LoadingImage";
 
 interface Vegitable {
   id: number;
   name: string;
   price: number;
   image: string;
-} // Типы пропов для продуктов
+} // Типы пропсов для продуктов
 
 const Catalog = () => {
   const [vegitablesList, setVegitablesList] = useState<Vegitable[]>([]);
@@ -52,10 +54,19 @@ const Catalog = () => {
           Catalog
         </Title>
         {/* Каталог */}
+        {vegitablesList.length === 0 && (
+          <Box
+            h="100vh"
+            display="flex"
+            pt={150}
+            style={{ justifyContent: "center" }}
+          >
+            <Loader color="gray" size="xl"></Loader>
+          </Box>
+        )}
         <Flex component="ul" rowGap={28} columnGap={24} wrap="wrap">
           {vegitablesList.map((vegitable) => {
             const [title, weight] = vegitable.name.split("-");
-
             return (
               <Card
                 component="li"
@@ -66,13 +77,7 @@ const Catalog = () => {
                 pie={10}
                 bdrs={24}
               >
-                <Image
-                  width="100%"
-                  src={vegitable.image}
-                  w={276}
-                  height={276}
-                  alt={vegitable.name}
-                />
+                <LoadingImage src={vegitable.image} alt={vegitable.name} />
                 <Group justify="space-between" mb={16}>
                   <Group gap={12}>
                     <Text
