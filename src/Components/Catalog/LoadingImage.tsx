@@ -6,7 +6,7 @@ interface LoadingImage {
   alt: string;
 }
 
-const LoadingImage = (props: LoadingImage) => {
+const LoadingImage = ({ src, alt }: LoadingImage) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
@@ -30,10 +30,10 @@ const LoadingImage = (props: LoadingImage) => {
         </Box>
       )}
       <Image
-        src={props.src}
+        src={src}
         w="100%"
         h="100%"
-        alt={props.alt}
+        alt={alt}
         onLoad={() => setIsLoaded(true)}
       />
     </Box>

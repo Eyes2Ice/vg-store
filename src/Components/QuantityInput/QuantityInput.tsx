@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Group,
   ActionIcon,
@@ -7,8 +6,12 @@ import {
 } from "@mantine/core";
 import { useRef } from "react";
 
-const QuantityInput = () => {
-  const [value, setValue] = useState<number | string>(1);
+interface QuantityInputProps {
+  quantity: string | number;
+  setQuantity: (value: string | number) => void;
+}
+
+const QuantityInput = ({ quantity, setQuantity }: QuantityInputProps) => {
   const handlersRef = useRef<NumberInputHandlers>(null);
 
   return (
@@ -19,7 +22,7 @@ const QuantityInput = () => {
         bg={"var(--mantine-color-grayColor-3)"}
         variant="default"
         onClick={() => handlersRef.current?.decrement()}
-        disabled={value === 1}
+        disabled={quantity === 1}
       >
         <svg
           width="12"
@@ -40,8 +43,8 @@ const QuantityInput = () => {
 
       <NumberInput
         variant="unstyled"
-        value={value}
-        onChange={(val) => (val ? setValue(val) : setValue(1))}
+        value={quantity}
+        onChange={(value) => setQuantity(value ? value : 1)}
         handlersRef={handlersRef}
         min={1}
         bd={"none"}
