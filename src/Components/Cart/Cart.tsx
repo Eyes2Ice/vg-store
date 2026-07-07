@@ -1,6 +1,6 @@
 import cartIcon from "@/assets/img/icons/cart.svg";
 import emptyCartIcon from "@/assets/img/icons/cart-empty.svg";
-import { Button, Image, Popover, Text } from "@mantine/core";
+import { Button, Image, Popover, Text, Box } from "@mantine/core";
 import { useContext } from "react";
 import { CartContext } from "@/cartContext";
 
@@ -21,7 +21,25 @@ const Cart = () => {
           fz={16}
           lh="150%"
         >
-          {cartData?.totalItems !== 0 && cartData?.totalItems}
+          {cartData?.totalItems !== 0 && (
+            <Box
+              display="flex"
+              style={{ justifyContent: "center", alignItems: "center" }}
+              py={3}
+              px={9}
+              w={20}
+              h={20}
+              mr={10}
+              bdrs={36}
+              bg="var(--mantine-color-grayColor-0)"
+              fw={600}
+              fz={23}
+              lh="143%"
+              c="var(--mantine-color-grayColor-9)"
+            >
+              {cartData?.totalItems}
+            </Box>
+          )}
           Cart <Image src={cartIcon} alt="Иконка корзины" ml={12} />
         </Button>
       </Popover.Target>

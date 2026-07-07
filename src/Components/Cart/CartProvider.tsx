@@ -18,7 +18,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
             : item,
         );
       }
-
+      
       return [...currentCart, { ...product, quantity }];
     });
   };

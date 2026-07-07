@@ -26,7 +26,7 @@ export interface ProductTypes {
 const Product = (product: ProductTypes) => {
   const [quantity, setQuantity] = useState<string | number>(1);
 
-  // const cartData = useContext(CartContext);
+  const cartData = useContext(CartContext);
 
   return (
     <Card
@@ -86,6 +86,7 @@ const Product = (product: ProductTypes) => {
           fz={16}
           lh={"150%"}
           c={"#3b944e"}
+          onClick={() => cartData?.addToCart(product, Number(quantity))}
         >
           Add to cart <Image src={greenCartIcon} ml={10} />
         </Button>
