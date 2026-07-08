@@ -1,5 +1,5 @@
 import { useListState } from "@mantine/hooks";
-import { CartContext, type CartItem } from "@/cartContext";
+import { CartContext, type CartItem } from "@/Components/Cart/cartContext";
 import { type ProductTypes } from "../Catalog/Product";
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
@@ -7,7 +7,18 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
+
+  const updateQuantity = (productId: number, newQuantity: number) => {
+    handlers.setState((currentCart) =>
+      currentCart.map((item) =>
+        item.id === productId ? { ...item, quantity: newQuantity } : item,
+      ),
+    );
+  };
 
   const addToCart = (product: ProductTypes, quantity: number) => {
     handlers.setState((currentCart) => {
@@ -18,13 +29,15 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
             : item,
         );
       }
-      
+
       return [...currentCart, { ...product, quantity }];
     });
   };
 
   return (
-    <CartContext.Provider value={{ cart, totalItems, totalPrice, addToCart }}>
+    <CartContext.Provider
+      value={{ cart, totalItems, totalPrice, addToCart, updateQuantity }}
+    >
       {children}
     </CartContext.Provider>
   );

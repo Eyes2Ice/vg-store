@@ -7,12 +7,11 @@ import {
   Image,
 } from "@mantine/core";
 
-import { useContext, useState } from "react";
-
+import { useState } from "react";
+import { useCart } from "@/Components/Cart/cartContext";
 import LoadingImage from "./LoadingImage";
 import greenCartIcon from "@/assets/img/icons/cart-green.svg";
 import QuantityInput from "../QuantityInput/QuantityInput";
-import { CartContext } from "@/cartContext";
 
 export interface ProductTypes {
   id: number;
@@ -26,7 +25,7 @@ export interface ProductTypes {
 const Product = (product: ProductTypes) => {
   const [quantity, setQuantity] = useState<string | number>(1);
 
-  const cartData = useContext(CartContext);
+  const cartData = useCart();
 
   return (
     <Card

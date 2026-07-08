@@ -10,6 +10,7 @@ interface CartContextType {
   totalItems: number;
   totalPrice: number;
   addToCart: (product: ProductTypes, quantity: number) => void;
+  updateQuantity: (productID: number, newQuantity: number) => void;
 }
 
 export const CartContext = createContext<CartContextType | null>(null);
