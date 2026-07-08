@@ -10,20 +10,23 @@ import {
   Stack,
   NumberFormatter,
 } from "@mantine/core";
+import { useHover } from "@mantine/hooks";
 import { useCart } from "@/Components/Cart/cartContext";
 import QuantityInput from "../QuantityInput/QuantityInput";
 
 const Cart = () => {
   const { cart, totalItems, totalPrice, updateQuantity } = useCart();
+  const { hovered, ref } = useHover();
   return (
     <Popover width={200} position="bottom" withArrow shadow="md">
       <Popover.Target>
         <Button
+          ref={ref}
           type="button"
           h={44}
           px={40}
           py={10}
-          bg="var(--mantine-color-greenColor-6)"
+          bg={hovered ? "#3b944e" : "var(--mantine-color-greenColor-6)"}
           bdrs={8}
           fw={600}
           fz={16}

@@ -1,7 +1,10 @@
 import Cart from "@/Components/Cart/Cart";
 import { Badge, Box, Group } from "@mantine/core";
+import { useHover } from "@mantine/hooks";
 
 const Header = () => {
+  const { hovered, ref } = useHover();
+
   return (
     <Box
       component="header"
@@ -12,6 +15,7 @@ const Header = () => {
     >
       <Group justify="space-between" py={7.5} px={20}>
         <a
+          ref={ref}
           href="/"
           style={{
             display: "flex",
@@ -30,7 +34,7 @@ const Header = () => {
             fz={20}
             fw={500}
             h={33}
-            color="var(--mantine-color-greenColor-6)"
+            color={hovered ? "#3b944e" : "var(--mantine-color-greenColor-6)"}
             style={{ cursor: "pointer" }}
           >
             SHOP

@@ -6,6 +6,7 @@ import {
   Button,
   Image,
 } from "@mantine/core";
+import { useHover } from "@mantine/hooks";
 
 import { useState } from "react";
 import { useCart } from "@/Components/Cart/cartContext";
@@ -26,6 +27,8 @@ const Product = (product: ProductTypes) => {
   const [quantity, setQuantity] = useState<string | number>(1);
 
   const cartData = useCart();
+
+  const { hovered, ref } = useHover();
 
   return (
     <Card
@@ -73,6 +76,7 @@ const Product = (product: ProductTypes) => {
           }}
         />
         <Button
+          ref={ref}
           bdrs={8}
           py={10}
           maw={214}
@@ -80,7 +84,7 @@ const Product = (product: ProductTypes) => {
           flex={1}
           h={44}
           px={43}
-          bg={"#e7faeb"}
+          bg={hovered ? "#d6f0dc" : "#e7faeb"}
           fw={600}
           fz={16}
           lh={"150%"}
