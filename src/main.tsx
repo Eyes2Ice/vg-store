@@ -37,7 +37,7 @@ const grayColor: MantineColorsTuple = [
   "#212529",
 ];
 
-const theme = createTheme({
+export const theme = createTheme({
   colors: {
     greenColor,
     grayColor,
