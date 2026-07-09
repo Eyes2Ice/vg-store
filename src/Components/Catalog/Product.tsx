@@ -39,6 +39,7 @@ const Product = (product: ProductTypes) => {
       pis={16}
       pie={10}
       bdrs={24}
+      data-testid="product-card"
     >
       <LoadingImage src={product.image} alt={product.name} />
       <Group justify="space-between" mb={16}>
@@ -66,6 +67,7 @@ const Product = (product: ProductTypes) => {
       </Group>
       <Group justify="space-between" wrap="nowrap">
         <NumberFormatter
+          data-testid="product-price"
           prefix="$ "
           value={product.price}
           style={{
@@ -76,6 +78,7 @@ const Product = (product: ProductTypes) => {
           }}
         />
         <Button
+          data-testid="product-button"
           ref={ref}
           bdrs={8}
           py={10}

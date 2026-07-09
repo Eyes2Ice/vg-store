@@ -21,6 +21,7 @@ const Cart = () => {
     <Popover width={200} position="bottom" withArrow shadow="md">
       <Popover.Target>
         <Button
+          data-testid="cart-button"
           ref={ref}
           type="button"
           h={44}
@@ -34,6 +35,7 @@ const Cart = () => {
         >
           {totalItems !== 0 && (
             <Box
+              data-testid="total-products-counter"
               display="flex"
               style={{
                 justifyContent: "center",
@@ -60,6 +62,7 @@ const Cart = () => {
       {/* Пустая корзина */}
       {cart.length === 0 && (
         <Popover.Dropdown
+          data-testid="cart-modal"
           maw={301}
           w="100%"
           p={24}
@@ -75,6 +78,7 @@ const Cart = () => {
       {/* Корзина с товарами */}
       {cart.length > 0 && (
         <Popover.Dropdown
+          data-testid="cart-modal"
           maw={444}
           w="100%"
           p={24}
@@ -162,7 +166,11 @@ const Cart = () => {
             }}
           >
             Total{" "}
-            <NumberFormatter prefix="$ " value={totalPrice}></NumberFormatter>
+            <NumberFormatter
+              data-testid="total-price"
+              prefix="$ "
+              value={totalPrice}
+            ></NumberFormatter>
           </Group>
         </Popover.Dropdown>
       )}

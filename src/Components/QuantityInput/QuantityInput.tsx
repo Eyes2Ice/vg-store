@@ -17,6 +17,7 @@ const QuantityInput = ({ quantity, setQuantity }: QuantityInputProps) => {
   return (
     <Group gap={0}>
       <ActionIcon
+        data-testid="action-decrement"
         size={30}
         bd={"none"}
         bg={"var(--mantine-color-grayColor-3)"}
@@ -43,6 +44,7 @@ const QuantityInput = ({ quantity, setQuantity }: QuantityInputProps) => {
       </ActionIcon>
 
       <NumberInput
+        data-testid="quantity-input"
         variant="unstyled"
         value={quantity}
         onChange={(value) => setQuantity(value ? value : 1)}
@@ -58,6 +60,7 @@ const QuantityInput = ({ quantity, setQuantity }: QuantityInputProps) => {
       />
 
       <ActionIcon
+        data-testid="action-increment"
         size={30}
         bd={"none"}
         bg={"var(--mantine-color-grayColor-3)"}
