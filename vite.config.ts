@@ -4,6 +4,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  base: "/vg-store/",
   test: {
     globals: true,
     environment: "jsdom",
