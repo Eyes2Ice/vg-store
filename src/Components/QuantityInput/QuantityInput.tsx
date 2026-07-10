@@ -9,9 +9,14 @@ import { useRef } from "react";
 interface QuantityInputProps {
   quantity: string | number;
   setQuantity: (value: string | number) => void;
+  disabledDecrement?: boolean;
 }
 
-const QuantityInput = ({ quantity, setQuantity }: QuantityInputProps) => {
+const QuantityInput = ({
+  quantity,
+  setQuantity,
+  disabledDecrement,
+}: QuantityInputProps) => {
   const handlersRef = useRef<NumberInputHandlers>(null);
 
   return (
@@ -23,7 +28,7 @@ const QuantityInput = ({ quantity, setQuantity }: QuantityInputProps) => {
         bg={"var(--mantine-color-grayColor-3)"}
         variant="default"
         onClick={() => handlersRef.current?.decrement()}
-        disabled={quantity === 1}
+        disabled={disabledDecrement}
       >
         <svg
           width="12"
@@ -47,9 +52,9 @@ const QuantityInput = ({ quantity, setQuantity }: QuantityInputProps) => {
         data-testid="quantity-input"
         variant="unstyled"
         value={quantity}
-        onChange={(value) => setQuantity(value ? value : 1)}
+        onChange={(value) => setQuantity(typeof value === "number" ? value : 1)}
         handlersRef={handlersRef}
-        min={1}
+        min={disabledDecrement ? 1 : 0}
         bd={"none"}
         hideControls
         w={30}

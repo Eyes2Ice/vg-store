@@ -1,4 +1,4 @@
-import { screen, render } from "@/test-utils/render";
+import { screen, render, within } from "@/test-utils/render";
 import userEvent from "@testing-library/user-event";
 import App from "@/App.tsx";
 import { expect, test, describe, beforeEach } from "vitest";
@@ -65,5 +65,27 @@ describe("Тестирование корзины", () => {
     const totalPrice = screen.getByTestId("total-price");
 
     expect(totalPrice).toHaveTextContent("180");
+  });
+
+  test("При нажатии на минус у товара с количеством 1 внутри корзины, товар должен полностью удаляться", async () => {
+    const user = userEvent.setup();
+
+    const productButtons = await screen.findAllByTestId("product-button");
+    await user.click(productButtons[0]);
+
+    const openCartButton = screen.getByTestId("cart-button");
+    await user.click(openCartButton);
+
+    const cartModal = await screen.findByTestId("cart-modal");
+
+    const decrementButton = within(cartModal).getByTestId("action-decrement");
+
+    await user.click(decrementButton);
+
+    const emptyText = screen.getByText("You cart is empty!");
+    expect(emptyText).toBeInTheDocument();
+
+    const counter = screen.queryByTestId("total-products-counter");
+    expect(counter).not.toBeInTheDocument();
   });
 });

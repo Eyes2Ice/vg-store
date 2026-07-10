@@ -63,7 +63,11 @@ const Product = (product: ProductTypes) => {
             {product.weight}
           </Text>
         </Group>
-        <QuantityInput quantity={quantity} setQuantity={setQuantity} />
+        <QuantityInput
+          quantity={quantity}
+          setQuantity={setQuantity}
+          disabledDecrement={quantity === 1}
+        />
       </Group>
       <Group justify="space-between" wrap="nowrap">
         <NumberFormatter

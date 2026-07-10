@@ -146,6 +146,7 @@ const Cart = () => {
                         setQuantity={(newQuantity) =>
                           updateQuantity(product.id, Number(newQuantity))
                         }
+                        disabledDecrement={false}
                       />
                     </Group>
                   </Stack>

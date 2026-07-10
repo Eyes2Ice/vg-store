@@ -13,11 +13,15 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   );
 
   const updateQuantity = (productId: number, newQuantity: number) => {
-    handlers.setState((currentCart) =>
-      currentCart.map((item) =>
+    handlers.setState((currentCart) => {
+      if (newQuantity <= 0) {
+        return currentCart.filter((item) => item.id !== productId);
+      }
+
+      return currentCart.map((item) =>
         item.id === productId ? { ...item, quantity: newQuantity } : item,
-      ),
-    );
+      );
+    });
   };
 
   const addToCart = (product: ProductTypes, quantity: number) => {
