@@ -43,7 +43,7 @@ const QuantityInput = ({
             height="12"
             transform="rotate(-90 0 2)"
             fill="#212529"
-            style={{ opacity: quantity === 1 ? 0.3 : 1 }}
+            style={{ opacity: disabledDecrement ? 0.3 : 1 }}
           />
         </svg>
       </ActionIcon>
